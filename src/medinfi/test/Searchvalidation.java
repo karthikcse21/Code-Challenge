@@ -26,7 +26,7 @@ public class Searchvalidation {
 		Excel1=sheet.getRow(0).getCell(0).toString();
 		Excel2=sheet.getRow(0).getCell(1).toString();
 		wb.close();
-		
+
 	}
 	public static ArrayList retreiveDoctors() throws IOException
 	{
@@ -65,9 +65,9 @@ public class Searchvalidation {
 		String displayedDoctorList[] = null;
 		if(doctorname.isDisplayed())
 		{
-			
+
 			displayedDoctorList=doctorname.getText().split("\n");
-			
+
 		}
 		for(String doctor:displayedDoctorList)
 		{
@@ -79,19 +79,19 @@ public class Searchvalidation {
 		}
 		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
 		XWPFDocument document = new XWPFDocument();
-        FileOutputStream out = new FileOutputStream(
-        new File("./TestOutput/TestReport" + ".docx"));
-        XWPFParagraph paragraph = document.createParagraph();
-        XWPFRun run = paragraph.createRun();
-        run.setText("Test Report for MedInfi");
-        run.addBreak();
-        
-        
-        if (validation)
+		FileOutputStream out = new FileOutputStream(
+				new File("./TestOutput/TestReport" + ".docx"));
+		XWPFParagraph paragraph = document.createParagraph();
+		XWPFRun run = paragraph.createRun();
+		run.setText("Test Report for MedInfi");
+		run.addBreak();
+
+
+		if (validation)
 		{
-        	run.setText("Values in the drop down match with expected output Data set");
-        	run.addBreak();
-        	run.setText("Testing completed Succesfully");
+			run.setText("Values in the drop down match with expected output Data set");
+			run.addBreak();
+			run.setText("Testing completed Succesfully");
 		}
 		else
 		{
@@ -102,12 +102,12 @@ public class Searchvalidation {
 			{
 				run.addBreak();
 				run.setText(mismatchedDoctor);
-				
+
 			}
 		}
 		driver.close();
 		document.write(out);
-	    System.out.println("Test report generated successfully");
-        out.close();
-	 }
+		System.out.println("Test report generated successfully");
+		out.close();
 	}
+}
